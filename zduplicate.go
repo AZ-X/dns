@@ -289,18 +289,6 @@ func (r1 *DS) isDuplicate(_r2 RR) bool {
 	return true
 }
 
-func (r1 *EID) isDuplicate(_r2 RR) bool {
-	r2, ok := _r2.(*EID)
-	if !ok {
-		return false
-	}
-	_ = r2
-	if r1.Endpoint != r2.Endpoint {
-		return false
-	}
-	return true
-}
-
 func (r1 *EUI48) isDuplicate(_r2 RR) bool {
 	r2, ok := _r2.(*EUI48)
 	if !ok {
@@ -320,18 +308,6 @@ func (r1 *EUI64) isDuplicate(_r2 RR) bool {
 	}
 	_ = r2
 	if r1.Address != r2.Address {
-		return false
-	}
-	return true
-}
-
-func (r1 *GID) isDuplicate(_r2 RR) bool {
-	r2, ok := _r2.(*GID)
-	if !ok {
-		return false
-	}
-	_ = r2
-	if r1.Gid != r2.Gid {
 		return false
 	}
 	return true
@@ -534,30 +510,6 @@ func (r1 *LP) isDuplicate(_r2 RR) bool {
 	return true
 }
 
-func (r1 *MB) isDuplicate(_r2 RR) bool {
-	r2, ok := _r2.(*MB)
-	if !ok {
-		return false
-	}
-	_ = r2
-	if !isDuplicateName(r1.Mb, r2.Mb) {
-		return false
-	}
-	return true
-}
-
-func (r1 *MD) isDuplicate(_r2 RR) bool {
-	r2, ok := _r2.(*MD)
-	if !ok {
-		return false
-	}
-	_ = r2
-	if !isDuplicateName(r1.Md, r2.Md) {
-		return false
-	}
-	return true
-}
-
 func (r1 *MF) isDuplicate(_r2 RR) bool {
 	r2, ok := _r2.(*MF)
 	if !ok {
@@ -565,18 +517,6 @@ func (r1 *MF) isDuplicate(_r2 RR) bool {
 	}
 	_ = r2
 	if !isDuplicateName(r1.Mf, r2.Mf) {
-		return false
-	}
-	return true
-}
-
-func (r1 *MG) isDuplicate(_r2 RR) bool {
-	r2, ok := _r2.(*MG)
-	if !ok {
-		return false
-	}
-	_ = r2
-	if !isDuplicateName(r1.Mg, r2.Mg) {
 		return false
 	}
 	return true
@@ -592,18 +532,6 @@ func (r1 *MINFO) isDuplicate(_r2 RR) bool {
 		return false
 	}
 	if !isDuplicateName(r1.Email, r2.Email) {
-		return false
-	}
-	return true
-}
-
-func (r1 *MR) isDuplicate(_r2 RR) bool {
-	r2, ok := _r2.(*MR)
-	if !ok {
-		return false
-	}
-	_ = r2
-	if !isDuplicateName(r1.Mr, r2.Mr) {
 		return false
 	}
 	return true
@@ -661,18 +589,6 @@ func (r1 *NID) isDuplicate(_r2 RR) bool {
 		return false
 	}
 	if r1.NodeID != r2.NodeID {
-		return false
-	}
-	return true
-}
-
-func (r1 *NIMLOC) isDuplicate(_r2 RR) bool {
-	r2, ok := _r2.(*NIMLOC)
-	if !ok {
-		return false
-	}
-	_ = r2
-	if r1.Locator != r2.Locator {
 		return false
 	}
 	return true
@@ -796,18 +712,6 @@ func (r1 *NSEC3PARAM) isDuplicate(_r2 RR) bool {
 		return false
 	}
 	if r1.Salt != r2.Salt {
-		return false
-	}
-	return true
-}
-
-func (r1 *NULL) isDuplicate(_r2 RR) bool {
-	r2, ok := _r2.(*NULL)
-	if !ok {
-		return false
-	}
-	_ = r2
-	if r1.Data != r2.Data {
 		return false
 	}
 	return true
@@ -1260,30 +1164,6 @@ func (r1 *TXT) isDuplicate(_r2 RR) bool {
 		if r1.Txt[i] != r2.Txt[i] {
 			return false
 		}
-	}
-	return true
-}
-
-func (r1 *UID) isDuplicate(_r2 RR) bool {
-	r2, ok := _r2.(*UID)
-	if !ok {
-		return false
-	}
-	_ = r2
-	if r1.Uid != r2.Uid {
-		return false
-	}
-	return true
-}
-
-func (r1 *UINFO) isDuplicate(_r2 RR) bool {
-	r2, ok := _r2.(*UINFO)
-	if !ok {
-		return false
-	}
-	_ = r2
-	if r1.Uinfo != r2.Uinfo {
-		return false
 	}
 	return true
 }

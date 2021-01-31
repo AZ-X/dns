@@ -118,7 +118,6 @@ type Msg struct {
 // ClassToString is a maps Classes to strings for each CLASS wire type.
 var ClassToString = map[uint16]string{
 	ClassINET:   "IN",
-	ClassCSNET:  "CS",
 	ClassCHAOS:  "CH",
 	ClassHESIOD: "HS",
 	ClassNONE:   "NONE",
