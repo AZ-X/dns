@@ -1,3 +1,5 @@
+![CodeQL](https://github.com/AZ-X/dnsslim/workflows/CodeQL/badge.svg) ![go builder verifier](https://github.com/AZ-X/dnsslim/workflows/go%20builder(verifier)/badge.svg)
+
 # Alternative (slimmer) client approach to [miekg/dns](https://github.com/miekg/dns)
 
 > ~~Less is more~~.
