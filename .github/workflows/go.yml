@@ -1,0 +1,22 @@
+name: go builder(verifier)
+on: [push, pull_request]
+jobs:
+
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go: [ '1.14', '1.15' ]
+    steps:
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: ${{ matrix.go }}
+
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Build
+      run: rm go.mod | go mod init dns | go build -v ./...
