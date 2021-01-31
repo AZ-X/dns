@@ -11,7 +11,7 @@ isn't a convenience function for it.
 Server side and client side programming is NOT supported
 
 This repository tries to keep the "master" branch as `sane` as possible and at the bleeding edge of standards,
-avoiding breaking changes wherever `responsible`. 
+avoiding breaking changes whoever `responsible`. 
 
 # Goals
 
@@ -43,6 +43,6 @@ AZ-X
 This library uses Go modules and uses semantic versioning. Building is done with the `go` tool, so
 the following should work:
 
-    go get github.com/AZ-X/dnsslim
-    go build github.com/AZ-X/dnsslim
+    go get github.com/AZ-X/dns
+    go build github.com/AZ-X/dns
 
