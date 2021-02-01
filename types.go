@@ -1036,6 +1036,45 @@ func (rr *TKEY) String() string {
 	return s
 }
 
+// UnknownRR delegates RFC3597
+// call ToRFC3597 if drilling
+type UnknownRR struct {
+	Hdr   RR_Header
+	Rdata []byte
+}
+
+func (rr *UnknownRR) String() string {
+	// Let's call it a whack
+	s := rfc3597Header(rr.Hdr)
+	s += "[unknown:" + strconv.Itoa(len(rr.Rdata)) + "]"
+	return s
+}
+
+func (rr *UnknownRR) Header() *RR_Header    { return &rr.Hdr }
+
+func (rr *UnknownRR) len(off int, compression map[string]struct{}) int {
+	return rr.Hdr.len(off, compression) + len(rr.Rdata)
+}
+
+func (rr *UnknownRR) pack(msg []byte, off int, compression compressionMap, compress bool) (off1 int, err error) {
+	end := off + len(rr.Rdata)
+	if end > len(msg) {
+		return len(msg), &Error{err: "overflow packing UnknownRR"}
+	}
+	copy(msg[off:end], rr.Rdata)
+	return end, nil
+}
+
+func (rr *UnknownRR) unpack(msg []byte, off int) (off1 int, err error) {
+	end := off + int(rr.Hdr.Rdlength)
+	if end > len(msg) {
+		return len(msg), &Error{err: "overflow unpacking UnknownRR"}
+	}
+	rr.Rdata = make([]byte, int(rr.Hdr.Rdlength))
+	copy(rr.Rdata, msg[off:end])
+	return end, nil
+}
+
 // RFC3597 represents an unknown/generic RR. See RFC 3597.
 type RFC3597 struct {
 	Hdr   RR_Header
@@ -1332,14 +1371,6 @@ func (a *APLPrefix) equals(b *APLPrefix) bool {
 	return a.Negation == b.Negation &&
 		bytes.Equal(a.Network.IP, b.Network.IP) &&
 		bytes.Equal(a.Network.Mask, b.Network.Mask)
-}
-
-// copy returns a copy of the APL prefix.
-func (p *APLPrefix) copy() APLPrefix {
-	return APLPrefix{
-		Negation: p.Negation,
-		Network:  copyNet(p.Network),
-	}
 }
 
 // len returns size of the prefix in wire format.

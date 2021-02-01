@@ -610,7 +610,7 @@ func (p wireSlice) Less(i, j int) bool {
 func rawSignatureData(rrset []RR, s *RRSIG) (buf []byte, err error) {
 	wires := make(wireSlice, len(rrset))
 	for i, r := range rrset {
-		r1 := r.copy()
+		r1 := r
 		h := r1.Header()
 		h.Ttl = s.OrigTtl
 		labels := SplitDomainName(h.Name)
