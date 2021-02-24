@@ -3,9 +3,9 @@ package dns
 import "fmt"
 
 // Version is current release version sync with miekg/dns
-var Version = v{&shadows, 1, 1, 38}
+var Version = v{&shadows, 1, 1, 39}
 // Shadows is current version of AZ-X/dns a.k.a slim dns
-var shadows = v{nil, 1, 1, 39}
+var shadows = v{nil, 1, 1, 40}
 
 // v holds the version of this library.
 type v struct {
